@@ -30,4 +30,12 @@ public class CatalogItemController : ControllerBase
         var result = await _catalogItemService.AddAsync(request.Name, request.Description, request.Price, request.AvailableStock, request.CatalogBrandId, request.CatalogTypeId, request.PictureFileName);
         return Ok(new AddItemResponse<int?>() { Id = result });
     }
+
+    [HttpPost]
+    [ProducesResponseType(typeof(AddItemResponse<int?>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> Delete(CreateProductRequest request)
+    {
+        await _catalogItemService.DeleteAsync(1);
+        return Ok(new AddItemResponse<int?>());
+    }
 }

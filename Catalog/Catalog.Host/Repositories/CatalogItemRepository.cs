@@ -1,3 +1,4 @@
+using System.Linq;
 using Catalog.Host.Data;
 using Catalog.Host.Data.Entities;
 using Catalog.Host.Repositories.Interfaces;
@@ -59,5 +60,12 @@ public class CatalogItemRepository : ICatalogItemRepository
         await _dbContext.SaveChangesAsync();
 
         return item.Entity.Id;
+    }
+
+    public async Task Delete(int id)
+    {
+           var p = _dbContext.CatalogItems.Include(x => x.Id == id);
+           var item = _dbContext.Remove(p);
+           await _dbContext.SaveChangesAsync();
     }
 }
