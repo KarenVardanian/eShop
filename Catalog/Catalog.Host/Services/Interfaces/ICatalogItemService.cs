@@ -4,4 +4,5 @@ public interface ICatalogItemService
 {
     Task<int?> AddAsync(string name, string description, decimal price, int availableStock, int catalogBrandId, int catalogTypeId, string pictureFileName);
     Task DeleteAsync(int id);
+    Task<int?> UpdateAsyncUpdate(decimal price, string name);
 }

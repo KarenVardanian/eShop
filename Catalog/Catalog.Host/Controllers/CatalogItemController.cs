@@ -38,4 +38,12 @@ public class CatalogItemController : ControllerBase
         await _catalogItemService.DeleteAsync(1);
         return Ok(new AddItemResponse<int?>());
     }
+
+    [HttpPost]
+    [ProducesResponseType(typeof(AddItemResponse<int?>), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> Update(CreateProductRequest request, string name)
+    {
+        await _catalogItemService.UpdateAsyncUpdate(1, name);
+        return Ok(new AddItemResponse<int?>());
+    }
 }

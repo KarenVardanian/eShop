@@ -24,4 +24,9 @@ public class CatalogBrandService : BaseDataService<ApplicationDbContext>, ICatal
     {
         await ExecuteSafeAsync(() => _catalogBrandRepository.Delete(id));
     }
+
+    public async Task UpdateAsync(int id, string brand)
+    {
+       await ExecuteSafeAsync(() => _catalogBrandRepository.Update(id, brand));
+    }
 }

@@ -26,4 +26,19 @@ public class CatalogTypeRepository : ICatalogTypeRepository
         var item = _dbContext.Remove(p);
         await _dbContext.SaveChangesAsync();
      }
+
+    public async Task<int?> Update(int id, string type)
+    {
+        var catalogType = await _dbContext.CatalogTypes.Where(x => x.Id == id).FirstOrDefaultAsync();
+        if (catalogType is not null)
+        {
+            catalogType.Type = type;
+            await _dbContext.SaveChangesAsync();
+            return catalogType.Id;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

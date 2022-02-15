@@ -2,15 +2,31 @@
 using Catalog.Host.Data;
 using Catalog.Host.Repositories.Interfaces;
 using Catalog.Host.Services.Interfaces;
-public class CatalogTypeService : ICatalogTypeService
+public class CatalogTypeService : BaseDataService<ApplicationDbContext>, ICatalogTypeService
 {
-    public Task<int?> AddAsync(string type)
+    private readonly ICatalogTypeRepository _catalogTypeRepository;
+
+    public CatalogTypeService(
+        IDbContextWrapper<ApplicationDbContext> dbContextWrapper,
+        ILogger<BaseDataService<ApplicationDbContext>> logger,
+        ICatalogTypeRepository catalogTypeRepository)
+        : base(dbContextWrapper, logger)
     {
-        throw new NotImplementedException();
+        _catalogTypeRepository = catalogTypeRepository;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task<int?> AddAsync(string type)
     {
-        throw new NotImplementedException();
+        return await ExecuteSafeAsync(() => _catalogTypeRepository.Add(type));
+    }
+
+    public async Task DeleteAsync(int id)
+    {
+        await ExecuteSafeAsync(() => _catalogTypeRepository.Delete(id));
+    }
+
+    public async Task<int?> UpdateAsyncUpdate(int id, string type)
+    {
+        return await ExecuteSafeAsync(() => _catalogTypeRepository.Update(id, type));
     }
 }

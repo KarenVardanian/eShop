@@ -68,4 +68,19 @@ public class CatalogItemRepository : ICatalogItemRepository
            var item = _dbContext.Remove(p);
            await _dbContext.SaveChangesAsync();
     }
+
+    public async Task<int?> Update(decimal price, string name)
+    {
+        var item = await _dbContext.CatalogItems.Where(x => x.Name.Equals(name)).FirstOrDefaultAsync();
+        if (item is not null)
+        {
+            item.Price = price;
+            await _dbContext.SaveChangesAsync();
+            return item.Id;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

@@ -24,6 +24,11 @@ public class CatalogItemService : BaseDataService<ApplicationDbContext>, ICatalo
 
     public async Task DeleteAsync(int id)
     {
-        await ExecuteSafeAsync(() => _catalogItemRepository.Delete(id));
+       await ExecuteSafeAsync(() => _catalogItemRepository.Delete(id));
+    }
+
+    public async Task<int?> UpdateAsyncUpdate(decimal price, string name)
+    {
+        return await ExecuteSafeAsync(() => _catalogItemRepository.Update(price, name));
     }
 }
