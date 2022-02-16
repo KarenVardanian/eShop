@@ -62,10 +62,18 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityServer\IdentityServer\IdentityServer.csproj", "{ED59CFCD-8450-4790-B736-554C5493A46F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{E3A29E2D-4EAF-4981-990E-731D1E3578F5}"
+	ProjectSection(SolutionItems) = preProject
+		User.cs = User.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.Host", "Basket\Basket.Host\Basket.Host.csproj", "{66EEAED5-1742-4671-8797-9CDEB8C5F6FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.UnitTests", "Basket\Basket.UnitTests\Basket.UnitTests.csproj", "{B997F664-002C-4CB7-8588-3427D7DF12BF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UserModel", "UserModel", "{51038536-7621-43A7-A4B1-5622D90BDC3A}"
+	ProjectSection(SolutionItems) = preProject
+		User.cs = User.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +131,7 @@ Global
 		{ED59CFCD-8450-4790-B736-554C5493A46F} = {5754DE66-007D-4B94-9574-36763DDD4516}
 		{66EEAED5-1742-4671-8797-9CDEB8C5F6FB} = {E3A29E2D-4EAF-4981-990E-731D1E3578F5}
 		{B997F664-002C-4CB7-8588-3427D7DF12BF} = {E3A29E2D-4EAF-4981-990E-731D1E3578F5}
+		{51038536-7621-43A7-A4B1-5622D90BDC3A} = {E3A29E2D-4EAF-4981-990E-731D1E3578F5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A801D1EC-BB9C-4D80-A8CB-17CEC08A76A5}

@@ -1,4 +1,5 @@
 using Basket.Host.Models;
+using Basket.Host.Services;
 using Basket.Host.Services.Interfaces;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -35,6 +36,14 @@ public class BasketBffController : ControllerBase
     public async Task<IActionResult> TestGet()
     {
         var basketId = User.Claims.FirstOrDefault(x => x.Type == "sub")?.Value;
+        var response = await _basketService.TestGet(basketId!);
+        return Ok(response);
+    }
+    [HttpPost]
+    [ProducesResponseType(typeof(TestGetResponse), (int)HttpStatusCode.OK)]
+    public async Task<IActionResult> TestGet2(string name)
+    {
+        var basketId = User.Claims.FirstOrDefault(x => x.Value == name)?.Value;
         var response = await _basketService.TestGet(basketId!);
         return Ok(response);
     }

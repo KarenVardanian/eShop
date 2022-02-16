@@ -17,6 +17,12 @@ services:
       - redis
     ports:
       - 5003:5003
+  nginx:
+    image: nginx
+    container_name: lde.nginx
+    ports:
+      - 80:80
+
   catalog.api:
     container_name: lde.catalog.api
     build:
@@ -63,14 +69,8 @@ services:
       - BasketApi=http://www.alevelwebsite.com:5003
     ports:
       - 5002:5002
-  nginx:
-    image: nginx
-    container_name: lde.nginx
-    ports:
-      - 80:80
-    volumes:
-      - ./Proxy/gateway/nginx/conf.d:/etc/nginx/conf.d
-      - ./Proxy/assets:/var/www/assets
+  
+
   pgadmin4:
     image: dpage/pgadmin4
     container_name: lde.pgadmin4

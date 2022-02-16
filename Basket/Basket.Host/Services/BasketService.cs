@@ -6,12 +6,17 @@ namespace Basket.Host.Services;
 public class BasketService : IBasketService
 {
     private readonly ICacheService _cacheService;
-
+    public  List<User> Users = new List<User>();
     public BasketService(ICacheService cacheService)
     {
         _cacheService = cacheService;
     }
-    
+
+    public Task<User> GetMyUserByName(string name)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task TestAdd(string userId, string data)
     {
        await _cacheService.AddOrUpdateAsync(userId, data);
@@ -22,4 +27,6 @@ public class BasketService : IBasketService
         var result = await _cacheService.GetAsync<string>(userId);
         return new TestGetResponse() { Data = result };
     }
+
+    
 }
