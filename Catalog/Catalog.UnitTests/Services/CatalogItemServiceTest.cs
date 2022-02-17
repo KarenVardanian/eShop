@@ -77,4 +77,48 @@ public class CatalogItemServiceTest
         // assert
         result.Should().Be(testResult);
     }
+
+    [Fact]
+    public async Task UpdateAsyncSucces()
+    {
+        await Task.Delay(12);
+        var testResult = 1;
+
+        _catalogItemRepository.Setup(s => s.Update(
+            It.IsAny<decimal>(),
+            It.IsAny<string>())).ReturnsAsync(testResult);
+
+        // act
+        var result = await _catalogService.UpdateAsyncUpdate(_testItem.Price, _testItem.Name);
+
+        // assert
+        result.Should().Be(testResult);
+    }
+
+    // [Fact]
+    // public async Task DeleteAsyncSucces()
+    // {
+    //    await Task.Delay(199);
+
+    //// _catalogItemRepository.Setup(s => s.Delete(
+    ////        It.IsAny<int>()));
+    ////    await _catalogService.DeleteAsync(1);
+    ////    Assert.
+    // }
+    [Fact]
+    public async Task UpdateAsyncFailed()
+    {
+        await Task.Delay(12);
+        int? testResult = null;
+
+        _catalogItemRepository.Setup(s => s.Update(
+            It.IsAny<decimal>(),
+            It.IsAny<string>())).ReturnsAsync(testResult);
+
+        // act
+        var result = await _catalogService.UpdateAsyncUpdate(_testItem.Price, _testItem.Name);
+
+        // assert
+        result.Should().Be(testResult);
+    }
 }
