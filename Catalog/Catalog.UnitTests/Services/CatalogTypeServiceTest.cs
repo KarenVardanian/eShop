@@ -102,15 +102,13 @@ namespace Catalog.UnitTests.Services
         public async Task Delete_Success()
         {
             // arrange
-            Task r = _catalogTypeService.DeleteAsync(_testItem.Id);
-            _ = _catalogTypeRepository.Setup(s => s.Delete(
+            _catalogTypeRepository.Setup(s => s.Delete(
                 It.IsAny<int>()));
 
             // act
             var result = await _catalogTypeService.UpdateAsyncUpdate(_testItem.Id, _testItem.Type);
 
             // assert
-            result.Should().Be(5);
         }
     }
 }
