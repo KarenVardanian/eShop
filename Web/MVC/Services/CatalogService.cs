@@ -47,7 +47,10 @@ public class CatalogService : ICatalogService
 
     public async Task<IEnumerable<SelectListItem>> GetBrands()
     {
+        
         await Task.Delay(300);
+        var r = await _httpClient.SendAsync<object, object>($"{_settings.Value.CatalogUrl}/getbrands",
+          HttpMethod.Get, new { });
         var list = new List<SelectListItem>
         {
             new SelectListItem()
@@ -61,6 +64,7 @@ public class CatalogService : ICatalogService
                 Text = "brand 2"
             }
         };
+        list.Append(r);
         var result = await _httpClient.SendAsync<object, object>($"{_settings.Value.CatalogUrl}/getbrands",
             HttpMethod.Post, new {} );
         
@@ -70,13 +74,16 @@ public class CatalogService : ICatalogService
     public async Task<IEnumerable<SelectListItem>> GetTypes()
     {
         await Task.Delay(300);
+        var r = await _httpClient.SendAsync<object, object>($"{_settings.Value.CatalogUrl}/getbrands",
+          HttpMethod.Get, new { });
+       
         var list = new List<SelectListItem>
         {
-            new SelectListItem()
-            {
-                Value = "0",
-                Text = "type 1"
-            },
+        new SelectListItem()
+        {
+            Value = "0",
+            Text = "type 1"
+        },
             
             new SelectListItem()
             {
@@ -84,6 +91,7 @@ public class CatalogService : ICatalogService
                 Text = "type 2"
             }
         };
+        list.Append(r);
 
         return list;
     }
